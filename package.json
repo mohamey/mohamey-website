@@ -1,0 +1,19 @@
+{
+  "name": "mohamey",
+  "version": "0.0.0",
+  "description": "Mohamey in node",
+  "main": "main.js",
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "express": "~4.13.4",
+    "images": "~3.0.0",
+    "mysql": "~2.11.1",
+    "randomstring": "~1.1.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mohamey@tcd.ie",
+  "license": "BSD-2-Clause"
+}
