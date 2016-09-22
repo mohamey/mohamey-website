@@ -4,11 +4,15 @@
   "description": "Mohamey in node",
   "main": "main.js",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "cookie-parser": "~1.4.3",
-    "express": "~4.13.4",
+    "dompurify": "^0.8.3",
+    "express": "^4.13.4",
     "images": "~3.0.0",
+    "jsdom": "^9.5.0",
     "mysql": "~2.11.1",
-    "randomstring": "~1.1.5"
+    "randomstring": "~1.1.5",
+    "validator": "^5.7.0"
   },
   "devDependencies": {},
   "scripts": {
