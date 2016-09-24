@@ -17,12 +17,22 @@ const window = jsdom.jsdom('', {
   }
 }).defaultView
 const DOMPurify = createDOMPurify(window)
+const nodeMailer = require("nodemailer")
 
 const app = express();
 app.use(cookieParser());
 app.use(express.static('public'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
+
+// Nodemailer setup
+const transporter = nodeMailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'mohameywebsite@gmail.com',
+    pass: 'jt8UJ6JAsIueDDrae7R6'
+  }
+})
 
 // MySQL Connection
 const trackingConnection = mysql.createConnection({
@@ -39,12 +49,12 @@ const formConnection = mysql.createConnection({
   database: 'mohamey_forms'
 });
 // Connect to MySql Database
-// try{
-//   trackingConnection.connect();
-//   formConnection.connect();
-// }catch(e){
-//   console.log(e)
-// }
+try{
+  trackingConnection.connect();
+  formConnection.connect();
+}catch(e){
+  console.log(e)
+}
 
 app.get('/', (req, res) => {
   // If no cookie has been sent with the request, generate a new one for tge user
@@ -67,15 +77,30 @@ app.get('/thanks', (req, res) => {
 // Handle form submissions
 app.post('/thanks', (req, res) => {
   // Save form details to database
+  const name = DOMPurify.sanitize(req.body.name)
+  const email = DOMPurify.sanitize(req.body.email)
+  const message = DOMPurify.sanitize(req.body.message)
   const formSql = "INSERT INTO form_submissions (Name, Email, Message) VALUES (?, ?, ?)"
-  const formValues = [DOMPurify.sanitize(req.body.name), DOMPurify.sanitize(req.body.email), DOMPurify.sanitize(req.body.message)]
+  const formValues = [name, email, message]
   const formQuery = mysql.format(formSql, formValues)
+
+  // Create email object to be sent
+  const emailObject = {
+    from: 'mohameywebsite@gmail.com',
+    to: 'mohamey@tcd.ie',
+    replyTo: email,
+    subject: 'New Form Submission!',
+    text: `You have a new form submission from ${name}:\n\n${message}`
+  }
+
   try{
     const formSubmission = formConnection.query(formQuery, (err, result) => {
       if (err) {
         console.log(err)
       }
     })
+    // Transporter send email object
+    transporter.sendMail(emailObject)
   } catch (err) {
     console.log(err)
   }
