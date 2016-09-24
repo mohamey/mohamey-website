@@ -251,3 +251,9 @@ html{
 	color: red;
 	font-size: 10px;
 }
+
+/* Form hints css */
+.formHints {
+  display: none;
+  float: right;
+}

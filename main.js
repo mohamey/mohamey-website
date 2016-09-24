@@ -40,27 +40,24 @@ const formConnection = mysql.createConnection({
 });
 // Connect to MySql Database
 // try{
-//   connection.connect();
+//   trackingConnection.connect();
+//   formConnection.connect();
 // }catch(e){
-//   console.err(e)
+//   console.log(e)
 // }
 
-app.on('request', function(req, res){
-  // console.log("REQUEST: "+req.url);
-});
-
-app.get('/', function(req, res){
+app.get('/', (req, res) => {
   // If no cookie has been sent with the request, generate a new one for tge user
-  if(req.cookies.cid == undefined){
+  if(!req.cookies.cid){
     res.cookie('cid', randomString.generate(30), {'path':'/'});
   }
   res.set('content-type','text/html');
   res.sendFile(__dirname+'/index.html');
 });
 
-app.get('/thanks', function(req, res){
+app.get('/thanks', (req, res) => {
   // If no cookie has been sent with the request, generate a new one for tge user
-  if(req.cookies.cid == undefined){
+  if(!req.cookies.cid){
     res.cookie('cid', randomString.generate(30), {'path':'/'});
   }
   res.set('content-type', 'text/html');
@@ -68,7 +65,7 @@ app.get('/thanks', function(req, res){
 });
 
 // Handle form submissions
-app.post('/thanks', function(req, res){
+app.post('/thanks', (req, res) => {
   // Save form details to database
   const formSql = "INSERT INTO form_submissions (Name, Email, Message) VALUES (?, ?, ?)"
   const formValues = [DOMPurify.sanitize(req.body.name), DOMPurify.sanitize(req.body.email), DOMPurify.sanitize(req.body.message)]
@@ -80,26 +77,26 @@ app.post('/thanks', function(req, res){
       }
     })
   } catch (err) {
-    console.err(err)
+    console.log(err)
   }
 
   res.set('content-type', 'text/html')
   res.sendFile(`${__dirname}/thanks.html`)
 })
 
-app.get('/snake', function(req, res){
+app.get('/snake', (req, res) => {
   // If no cookie has been sent with the request, generate a new one for tge user
-  if(req.cookies.cid == undefined){
+  if(!req.cookies.cid){
     res.cookie('cid', randomString.generate(30), {'path':'/'});
   }
   res.set('content-type', 'text/html');
   res.sendFile(__dirname+'/GAMEZ.html');
 });
 
-app.get('/tracking-pixel', function(request, result){
+app.get('/tracking-pixel', (request, result) => {
   // If no cookie has been sent with the request, generate a new one for tge user
-  if(req.cookies.cid == undefined){
-    res.cookie('cid', randomString.generate(30), {'path':'/'});
+  if(!request.cookies.cid){
+    result.cookie('cid', randomString.generate(30), {'path':'/'});
   }
 
   images(1,1)
@@ -108,29 +105,28 @@ app.get('/tracking-pixel', function(request, result){
   result.set('content-type','image/jpg');
   result.sendFile(__dirname+'/p.jpg');
 
-  var usersSql = "INSERT INTO users (cookie, ip_address, user_agent) VALUES (?, ? ,?)";
-  var userValues = [request.cookies.cid, request.ip, request.headers['user-agent']];
+  const usersSql = "INSERT INTO users (cookie, ip_address, user_agent) VALUES (?, ? ,?)";
+  const userValues = [request.cookies.cid, request.ip, request.headers['user-agent']];
 
-  var historySql = "INSERT INTO user_history (cookie, domain, history, page_title) VALUES (?, ? ,?, ?)";
-  var historyValues = [request.cookies.cid, request.hostname, request.query.url, request.query.title];
-  usersSql = mysql.format(usersSql, userValues);
-  historySql = mysql.format(historySql, historyValues);
+  const historySql = "INSERT INTO user_history (cookie, domain, history, page_title) VALUES (?, ? ,?, ?)";
+  const historyValues = [request.cookies.cid, request.hostname, request.query.url, request.query.title];
+  const userSqlQuery = mysql.format(usersSql, userValues);
+  const historySqlQuery = mysql.format(historySql, historyValues);
 
-  var userQuery = trackingConnection.query(usersSql, function(err, result){
-    // console.log("Updated users database");
+  const userQuery = trackingConnection.query(userSqlQuery, (err, result) => {
     if (err) {
-      console.err(err)
+      console.log(err)
     }
-  });
+  })
 
-  var historyQuery = trackingConnection.query(historySql, function(err, result){
+  const historyQuery = trackingConnection.query(historySqlQuery, (err, request) => {
     // console.log("Updated history database");
     if (err){
-      console.err(err)
+      console.log(err)
     }
   });
 });
 
 app.listen(8080, () => {})
-// http.createServer(app).listen(8000, 'localhost');
-console.log("Server running at http://127.0.0.1:8080/");
+// http.createServer(app).listen(8080, '10.131.24.117');
+console.log("Server running at http://10.131.24.117/");

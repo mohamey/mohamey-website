@@ -93,7 +93,7 @@
                   <div style="background-color: #fafafa; border-radius: 1%;">
                     <div style="background-color: #fafafa; border-radius: 1%;">
                     <img src="skills-images/CSS.png" alt="skills-images/CSS.png" class="img-responsive inline" /><img src="skills-images/HTML5.png" alt="skills-images/HTML5.png" class="img-responsive inline" /><img src="skills-images/c.png" alt="skills-images/c.png" class="img-responsive inline" /><img src="skills-images/cpp.png" alt="skills-images/cpp.png" class="img-responsive inline" /><img src="skills-images/haskell.png" alt="skills-images/haskell.png" class="img-responsive inline" /><img src="skills-images/jQuery.png" alt="skills-images/jQuery.png" class="img-responsive inline" /><img src="skills-images/java.png" alt="skills-images/java.png" class="img-responsive inline" /><img src="skills-images/js-logo.png" alt="skills-images/js-logo.png" class="img-responsive inline" /><img src="skills-images/mysql.png" alt="skills-images/mysql.png" class="img-responsive inline" /><img src="skills-images/oracle.png" alt="skills-images/oracle.png" class="img-responsive inline" /><img src="skills-images/php.png" alt="skills-images/php.png" class="img-responsive inline" /><img src="skills-images/prolog.png" alt="skills-images/prolog.png" class="img-responsive inline" /><img src="skills-images/python.png" alt="skills-images/python.png" class="img-responsive inline" /><img src="skills-images/rails.png" alt="skills-images/rails.png" class="img-responsive inline" /><img src="skills-images/ruby.png" alt="skills-images/ruby.png" class="img-responsive inline" /><img src="skills-images/sass.png" alt="skills-images/sass.png" class="img-responsive inline" /><img src="skills-images/Octocat.jpg" alt="skills-images/Octocat.jpg" class="img-responsive inline" /><img src="skills-images/bootstrap.jpg" alt="skills-images/bootstrap.jpg" class="img-responsive inline" />                  </div>
-                </div>                  
+                </div>
                   </div>
                 </div>
               </div>
@@ -108,18 +108,21 @@
                 <div class="clearfix"></div>
                 <h2 class="section-heading">Contact Me</h2>
                 <div class = "contact-form">
-                  <form name="contact-me" method="POST" action="/thanks">
+                  <form name="contact-me" method="POST" action="/thanks" onsubmit="return validateForm()">
                     <div class="field form-group">
                       <label for="usr">Name: </label>
-                    <input type="text" class="form-control" name="name"id="usr">
+                      <p class="formHints" id="nameRequirements">Name must be at least 2 characters long</p>
+                    <input type="text" class="form-control formName" name="name" id="usr">
                     </div>
                     <div class="field form-group">
                       <label for="usr">Email:</label>
-                      <input type="text" class="form-control" id="usr" name="email">
+                      <p class="formHints" id="emailRequirements"></p>
+                      <input type="text" class="form-control formEmail" id="usr" name="email">
                     </div>
                     <div class="field form-group">
                   <label for="comment">Message:</label>
-                  <textarea class="form-control" rows="5" id="comment" name="message"></textarea>
+                  <p class="formHints" id="messageRequirements">Message should be at least 10 characters long</p>
+                  <textarea class="form-control formMessage" rows="5" id="comment" name="message"></textarea>
                     </div>
                     <button type="submit" value="Submit" class="btn btn-success"style="float:right; margin-right:10%;">Send Message!</button>
                   </form>
