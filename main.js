@@ -25,29 +25,33 @@ app.use(express.static('public'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 
+// Read in configuration file
+const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
+
 // Nodemailer setup
 const transporter = nodeMailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'mohameywebsite@gmail.com',
-    pass: 'jt8UJ6JAsIueDDrae7R6'
+    user: config.email.user,
+    pass: config.email.pass
   }
 })
 
 // MySQL Connection
 const trackingConnection = mysql.createConnection({
   host: 'localhost',
-  user: process.argv[2],
-  password: process.argv[3],
+  user: config.database.user,
+  password: config.database.pass,
   database: 'tracking'
 });
 
 const formConnection = mysql.createConnection({
   host: 'localhost',
-  user: process.argv[2],
-  password: process.argv[3],
+  user: config.database.user,
+  password: config.database.pass,
   database: 'mohamey_forms'
 });
+
 // Connect to MySql Database
 try{
   trackingConnection.connect();
