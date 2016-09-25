@@ -1,143 +1,173 @@
 $(document).ready(function(){
-	//CANVAS BANTER
-	var canvas = document.getElementById("canvas");
-	var context = canvas.getContext("2d");
-	var width = $("#canvas").width();
-	var height = $("#canvas").height();
+  //Initialise canvas global variables
+  const map = {
+    canvas: document.getElementById('canvas'),
+    context: canvas.getContext('2d'),
+    width: $('#canvas').width(),
+    height: $('#canvas').height(),
+    cellWidth: 10,
+    maxX: $('#canvas').width() / 10 - 1,
+    maxY: $('#canvas').height() / 10 - 1,
+    score: 0,
+    food: {}
+  }
 
-	//Other important variables
-	var cw = 10; //save cell width
-	var direction; //snakes direction
-	var food; //The food
-	var score; //the users score
+  // Snake object
+  let snake = {
+    direction: "right",
+    length: 5,
+    array: []
+  }
 
-	//The snake is an array of cells
-	var snakeArray;
+  // Start the game
+  function initialise(){
+    snake.direction = "right"
+    map.score = 0
+    createSnake()
+    createFood()
 
-	function initialise(){
-		direction = "right";
-		createSnake();
-		createFood();
-		score=0;
+    if (map.gameLoop) {
+      clearInterval(map.gameLoop)
+    }
+    map.gameLoop = setInterval(paint, 60);
+  }
 
-		if(typeof gameLoop != "undefined") clearInterval(gameLoop);
-		gameLoop = setInterval(paint, 60);
-	}
-	initialise();
+  function createSnake(){
+    snake.array = []
+    for (let i = snake.length-1; i>=0; i--) {
+      snake.array.push({x:i, y:0})
+    }
+  }
 
-	function createSnake(){
-		var length = 5;
-		snakeArray = [];
-		for(var i = length-1;i>=0;i--){
-			snakeArray.push({x:i, y:0});
-		}
-	}
+  function createFood(){
+    map.food.x = Math.round(Math.random() * ( map.width / map.cellWidth ) -1)
+    map.food.y = Math.round(Math.random() * ( map.height / map.cellWidth ) -1 )
+  }
 
-	function createFood(){
-		food = {
-			x: Math.round(Math.random()*(width-cw)/cw),
-			y: Math.round(Math.random()*(height-cw)/cw)
-		};
-	}
+  function moveFood(){
+    const direction = Math.round(Math.random()*4);
+    let obj = {}
+    switch (direction){
+      case 0: // go left
+        obj = {
+          x: map.food.x - 1,
+          y: map.food.y
+        }
+        break;
+      case 1: //go up
+        obj = {
+          x: map.food.x,
+          y: map.food.y - 1
+        }
+        break;
+      case 2: //go right
+        obj = {
+          x: map.food.x + 1,
+          y: map.food.y
+        }
+        break;
+      case 3: //go down
+        obj = {
+          x: map.food.x,
+          y: map.food.y + 1
+        }
+        break;
+    }
+    // Check the new food position is still on the map
+    if (obj.x >= 0 && obj.x <= map.maxX && obj.y >= 0 && obj.y <= map.maxY && !checkCollision(obj)) {
+      map.food.x = obj.x
+      map.food.y = obj.y
+    }
+  }
 
-	function moveFood(food){
-		var d = Math.round(Math.random()*7);
-		switch (d){
-			case 0: //go left
-				if(food.x!=0) food.x--;
-				break;
-			case 1: //go up
-				if(food.y!=0) food.y--;
-				break;
-			case 2: //go right
-				if(food.x!=(width/cw)-1) food.x++;
-				break;
-			case 3: //go down
-				if(food.y != (height/cw)-1) food.y++;
-				break;
-			default:
-				break;
-		}
-	}
+  //create a generic cell painting function
+  function paintCell(cell, color){
+    map.context.fillStyle= color
+    map.context.fillRect(cell.x * map.cellWidth, cell.y * map.cellWidth, map.cellWidth, map.cellWidth);
+    map.context.strokeStyle = "yellow";
+    map.context.strokeRect(cell.x * map.cellWidth, cell.y * map.cellWidth, map.cellWidth, map.cellWidth);
+  }
 
-	function paint(){
-		//First we need to repaint the canvas to avoid a snake trail
-		context.fillStyle = "white";
-		context.fillRect(0,0,width,height); //Rectangle is the borders of the map
-		context.strokeStyle = "black";
-		context.strokeRect(0,0,width,height);
+  function paint(){
+    //First we need to repaint the canvas to avoid a snake trail
+    map.context.fillStyle = "white";
+    map.context.fillRect(0, 0, map.width, map.height); //Rectangle is the borders of the map
+    map.context.strokeStyle = "black";
+    map.context.strokeRect(0, 0, map.width, map.height);
 
-		//we'll pop out the tail cell and put it in front of the head
-		var newX = snakeArray[0].x;
-		var newY = snakeArray[0].y;
-		//those are the positions of the head
-		//to get new head position we increment based on direction
-		if(direction=="right") newX++;
-		else if(direction=="down") newY++;
-		else if(direction=="left") newX--;
-		else if(direction=="up") newY--;
+    //we'll pop out the tail cell and put it in front of the head
+    let newHead = {}
+    newHead.x = snake.array[0].x
+    newHead.y = snake.array[0].y
+    //those are the positions of the head
+    //to get new head position we increment based on direction
+    switch (snake.direction) {
+      case "right":
+        newHead.x ++
+        break
+      case "left":
+        newHead.x --
+        break
+      case "up":
+        newHead.y --
+        break
+      case "down":
+        newHead.y ++
+        break
+    }
 
-		//Checkin fo' collisionnssss
-		if(newX==-1 || newX==width/cw || newY==-1 || newY == height/cw || checkCollision(newX, newY)){
-			alert("Fucksake fam! You only scored "+score);
-			initialise();
-			return;
-		}
+    // Check that the new head doesn't collide with anything
+    if(newHead.x === -1 || newHead.x === (map.width / map.cellWidth) || newHead.y === -1 || newHead.y === (map.height / map.cellWidth) || checkCollision(newHead)){
+      alert("Fucksake fam! You only scored "+map.score)
+      initialise()
+      return
+    }
 
-		//move the food, coz why the fuck not??
-		moveFood(food);
+    //move the food
+    moveFood()
 
-		//when the little nigga eats some food, it goes straight to his thighs
-		if(newX==food.x && newY==food.y){
-			var newTail={x:newX, y:newY};
-			score++;
-			createFood();
-		} else{ //if there's no food, just move the tail to the head
-			var newTail = snakeArray.pop();
-			newTail.x = newX;
-			newTail.y = newY;
-		}
+    // Check if the snake head is in the same position as the food
+    if(newHead.x === map.food.x && newHead.y === map.food.y){
+      snake.array.unshift(newHead)
+      map.score++
+      createFood()
+    } else{ //if there's no food, just move the tail to the head
+      snake.array.pop()
+      snake.array.unshift(newHead)
+    }
 
-		//puts the tail at the head
-		snakeArray.unshift(newTail);
+    // Paint the new snake on the canvas
+    for(let i = 0; i < snake.array.length; i++){
+      paintCell(snake.array[i], "lime")
+    }
 
-		for(var i=0;i<snakeArray.length;i++){
-			var c = snakeArray[i];
-			paintCell(c);
-		}
+    // Paint the food
+    paintCell(map.food, "magenta")
+    // Write down the score in the corner
+    map.context.fillText(`Score: ${map.score}`, 5, map.height-5);
+  }
 
-		paintCell(food);
-		var scoreText = "Score: "+score;
-		context.fillText(scoreText, 5, height-5);
-	}
 
-	//create a generic cell painting function
-	function paintCell(cell){
-		context.fillStyle="lime";
-		context.fillRect(cell.x*cw, cell.y*cw,cw,cw);
-		context.strokeStyle = "yellow";
-		context.strokeRect(cell.x*cw, cell.y*cw,cw,cw);
-	}
+  // Check for an object colliding with the snake somewhere
+  function checkCollision(cell){
+    for(let i = 0; i< snake.array.length; i++ ){
+      if(cell.x === snake.array[i].x && cell.y === snake.array[i].y){
+        return true
+      }
+    }
+    return false
+  }
 
-	function checkCollision(x, y){
-		var result = false;
-		for(var i=0;i<snakeArray.length;i++){
-			if(snakeArray[i].x==x && snakeArray[i].y==y){
-				result = true;
-				break;
-			}
-		}
-		return result;
-	}
+  //Keyboard functions
+  $(document).keydown(function(e){
+    const key = e.which;
+    //make sure to prevent reverse gear
+    if(key=="37" && snake.direction!="right") snake.direction="left";
+    else if(key=="38" && snake.direction!="down") snake.direction="up";
+    else if(key=="39" && snake.direction!="left") snake.direction="right";
+    else if(key=="40" && snake.direction!="up") snake.direction="down";
+  })
 
-	//Keyboard functions
-	$(document).keydown(function(e){
-		var key = e.which;
-		//make sure to prevent reverse gear
-		if(key=="37" && direction!="right") direction="left";
-		else if(key=="38" && direction!="down") direction="up";
-		else if(key=="39" && direction!="left") direction="right";
-		else if(key=="40" && direction!="up") direction="down";
-	})
-
+  // Start the game
+  initialise()
 });
