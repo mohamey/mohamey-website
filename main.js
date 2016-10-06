@@ -53,12 +53,12 @@ const formConnection = mysql.createConnection({
 });
 
 // Connect to MySql Database
-try{
-  trackingConnection.connect();
-  formConnection.connect();
-}catch(e){
-  console.log(e)
-}
+// try{
+//   trackingConnection.connect();
+//   formConnection.connect();
+// }catch(e){
+//   console.log(e)
+// }
 
 app.get('/', (req, res) => {
   // If no cookie has been sent with the request, generate a new one for tge user

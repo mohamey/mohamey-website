@@ -56,7 +56,7 @@
 }
 
 .landing{
-	background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('images/science.png');
+	background: linear-gradient( rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65) ), url('images/science.png');
 	background-repeat: repeat-x repeat-y;
 	min-height: 400px;
 	max-height: 100vh;
@@ -256,4 +256,32 @@ html{
 .formHints {
   display: none;
   float: right;
+}
+
+.learning-stuff {
+  list-style: none;
+}
+
+.learning-stuff > li:before {
+  content: '\21AA\A';
+}
+
+.experience-container > h4:nth-child(3) {
+  color: #737373;
+}
+
+.experience-container > p {
+  font-size: 1.3em;
+}
+
+.experience-container > h3 {
+  color: #ff8533;
+}
+
+.experience-container > h3 > a {
+  color: #ff8533;
+}
+
+.learning-stuff > li {
+  font-size: 1.2em;
 }
