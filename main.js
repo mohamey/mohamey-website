@@ -53,12 +53,12 @@ const formConnection = mysql.createConnection({
 });
 
 // Connect to MySql Database
-// try{
-//   trackingConnection.connect();
-//   formConnection.connect();
-// }catch(e){
-//   console.log(e)
-// }
+try{
+  trackingConnection.connect();
+  formConnection.connect();
+}catch(e){
+  console.log(e)
+}
 
 app.get('/', (req, res) => {
   // If no cookie has been sent with the request, generate a new one for tge user
@@ -156,6 +156,6 @@ app.get('/tracking-pixel', (request, result) => {
   });
 });
 
-app.listen(8080, () => {})
-// http.createServer(app).listen(8080, '10.131.24.117');
-console.log("Server running at http://10.131.24.117/");
+// app.listen(8080, () => {})
+http.createServer(app).listen(8080, '10.131.24.117');
+// console.log("Server running at http://10.131.24.117/");
