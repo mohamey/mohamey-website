@@ -122,6 +122,12 @@ app.get('/snake', (req, res) => {
   res.sendFile(__dirname+'/GAMEZ.html');
 });
 
+app.get('/notes/nextGenNotes', (req, res) => {
+  // If no cookie has been sent with the request, generate a new one for tge user
+  res.set('content-type', 'text/html');
+  res.sendFile(__dirname+'/nextGenNetworks.html');
+});
+
 app.get('/tracking-pixel', (request, result) => {
   // If no cookie has been sent with the request, generate a new one for tge user
   if(!request.cookies.cid){
