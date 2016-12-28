@@ -190,7 +190,7 @@ Electric field in a single mode fibre propagates with two orthogonal polarizatio
 <li>Can choose the wavelength most suited to the network</li>
 </ul>
 
-<p>The idea is to change the size of the resonant cavity:</p>
+<p>A resonant/optical cavity is an arrangement of mirrors forms a standing wave cavity resonator for light waves. Think mirrors that bounce the light across the optical fibre, except they're not actually mirrors, just glass. The goal with lasers is to change the size of the resonant cavity:</p>
 
 <ul>
 <li>Mechanically: Physically increase the size of the cavity</li>
@@ -316,7 +316,7 @@ High gain in the amplifiers increase the ASE noise. Distance between amplifiers 
 <h3>
 <a id="user-content-osnr-for-a-chain-of-amplifiers" class="anchor" href="#osnr-for-a-chain-of-amplifiers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>OSNR for a chain of amplifiers</h3>
 
-<p>The noise figure (NF) is a measure of the noise introduced in the system by an amplifier. It's measured in dB and depends on the amplifier type. An average working value for EDFAs can be NF=5-6dB. Typically amplifiers are spaced 80km apart, but this can change. Reducing their spacing increases the system OSNR</p>
+<p>The noise figure (NF) is a measure of the noise introduced in the system by an amplifier. It's measured in dB and depends on the amplifier type. An average working value for EDFAs (Erbium Doped Fibre Amplifiers) can be NF=5-6dB. Typically amplifiers are spaced 80km apart, but this can change. Reducing their spacing increases the system OSNR</p>
 
 <p>In a chain of amplifiers, each additional amplifier aplifies both incoming signals and incoming noise, plus it will add its own noise. After each amplifier the OSNR decreases and this is <strong>permanent</strong>, it cannot be recovered.</p>
 
@@ -341,8 +341,9 @@ High gain in the amplifiers increase the ASE noise. Distance between amplifiers 
 The spread of the optical pulse in time is given by:
 <a href="NGImages/figure12.png" target="_blank"><img src="NGImages/figure12.png" alt="Signal Spread" style="max-width:100%;"></a></p>
 
-<p>For each modulation and data rate there's a maximum tolerable dispersion, for which Inter Symbol Interference (ISI) can be tolerated:
-<a href="NGImages/figure13.png" target="_blank"><img src="NGImages/figure13.png" alt="Signal Dispersion formula" style="max-width:100%;"></a></p>
+<p>For each modulation and data rate there's a maximum tolerable dispersion, for which Inter Symbol Interference (ISI) can be tolerated:</p>
+
+<p><a href="NGImages/figure13.png" target="_blank"><img src="NGImages/figure13.png" alt="Signal Dispersion formula" style="max-width:100%;"></a></p>
 
 <p>There are 2 possibilities:</p>
 
@@ -520,7 +521,7 @@ Each GPON (Gigabit Passive Optical Network) Transmission Convergence (GTC) carri
 
 <p>Upstream transmission is arranged in bursts rather than continuous frames, however a sequence of burst is delimited within a frame of 125 microseconds for symmetry with the downstream frame. The bandwidth allocation map sent in the downstream frame allocates all traffic for the corresponding upstream frame. Upstream bursts are also scrambled.</p>
 
-<p>The bandwidth map for upstream trafic scheduling is used to tell the ONUs when to transmit their payload upstream, it's at the base of the upstream MAC and is organized by the OLT.</p>
+<p>The bandwidth map for upstream traffic scheduling is used to tell the ONUs when to transmit their payload upstream, it's at the base of the upstream MAC and is organized by the OLT.</p>
 
 <h6>
 <a id="user-content-dynamic-bandwidth-assignment" class="anchor" href="#dynamic-bandwidth-assignment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dynamic Bandwidth Assignment</h6>
@@ -529,7 +530,7 @@ Each GPON (Gigabit Passive Optical Network) Transmission Convergence (GTC) carri
 
 <ul>
 <li>Status reporting: the ONU informs the OLT on how much bandwidth it needs</li>
-<li>Traffic Monitorint: OLT Decides based on observed traffic pattern</li>
+<li>Traffic Monitoring: OLT Decides based on observed traffic pattern</li>
 </ul>
 
 <p>Fixed bandwidth is assigned to each ONU, with a variable bandwidth available on demand whenever there's enough spare bandwidth available.</p>
@@ -537,7 +538,7 @@ Each GPON (Gigabit Passive Optical Network) Transmission Convergence (GTC) carri
 <h6>
 <a id="user-content-ranging-operations" class="anchor" href="#ranging-operations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ranging Operations</h6>
 
-<p>The OLT has the task of synchronizing all ONUs for upstream transmission, however ONUs have different distances from the OLT, their different propagation time needs to be considered otherwise two bursts might overlap at the OLT input. Ranging operations are operated by the OLT to figure out the relative time shift of the ONUs, his is done whenever an ONU joins the PON.</p>
+<p>The OLT has the task of synchronizing all ONUs for upstream transmission, however ONUs have different distances from the OLT, their different propagation time needs to be considered otherwise two bursts might overlap at the OLT input. Ranging operations are operated by the OLT to figure out the relative time shift of the ONUs, this is done whenever an ONU joins the PON.</p>
 
 <h5>
 <a id="user-content-ranging" class="anchor" href="#ranging" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Ranging</h5>
@@ -575,12 +576,12 @@ Each GPON (Gigabit Passive Optical Network) Transmission Convergence (GTC) carri
 <h5>
 <a id="user-content-duplex-scheme" class="anchor" href="#duplex-scheme" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Duplex Scheme</h5>
 
-<p>The most economically convenient solution to getting duplex transmission is wavelength division over single fibre. Different wavelengths are required to avoid that reflections from the transmitted signal adds to the received signals.</p>
+<p>The most economically convenient solution to getting duplex transmission is wavelength division over single fibre. Different wavelengths are required to avoid reflections from the transmitted signal that adds to the received signals.</p>
 
 <h5>
 <a id="user-content-split-ratio" class="anchor" href="#split-ratio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Split Ratio</h5>
 
-<p>Splitting ration indicates the total number of ONUs that can be served by one OLT. Higher splitting ratios allow better cost sharing but lower capacity per user and increases optical loss.</p>
+<p>Splitting ratio indicates the total number of ONUs that can be served by one OLT. Higher splitting ratios allow better cost sharing but lower capacity per user and increases optical loss.</p>
 
 <h5>
 <a id="user-content-security-issues" class="anchor" href="#security-issues" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Security Issues</h5>
@@ -603,7 +604,7 @@ ONUs have tunable lasers and tunable filters, ONUs can tune laser and receiving 
 <h2>
 <a id="user-content-local-loop-unbundling" class="anchor" href="#local-loop-unbundling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Local Loop Unbundling</h2>
 
-<p>The local loop is the transmission medium from the central office to the end user. Unbundling gives ew operators access to the network of the ex national operator (incumbent operator). This is a physical connecton as the OLO physically connects the end user to it's own equipment in the central office.</p>
+<p>The local loop is the transmission medium from the central office to the end user. Unbundling gives new operators access to the network of the ex national operator (incumbent operator). This is a physical connecton as the OLO physically connects the end user to it's own equipment in the central office.</p>
 
 <h2>
 <a id="user-content-sub-loop-unbundling" class="anchor" href="#sub-loop-unbundling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sub Loop Unbundling</h2>
@@ -1021,6 +1022,420 @@ Further enhancements are seen in 802.11ac which makes use of even wider channels
 <li>Xw-c: Used for control plane between eNB and WT Device. WT can be WLAN AP/Controllerm and interface is primarily used for setting up the LWA config in the LWA infrastructure.</li>
 <li>Xw-u: Used for data plane between eNB and WT, which is the LWA path for aggregating user data as well as for flow  control.</li>
 </ul>
+
+<h1>
+<a id="user-content-fixed-mobile-convergence" class="anchor" href="#fixed-mobile-convergence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fixed Mobile Convergence</h1>
+
+<p>This idea aims to tackle how we can increase mobile capacity to meet expected demands. Current approaches involve improving bit efficiency, increasing available spectrum and having higher cell density.</p>
+
+<h2>
+<a id="user-content-cell-density-issue" class="anchor" href="#cell-density-issue" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cell Density Issue</h2>
+
+<p>Backhauling a base station with fibre is usually feasible since one BS serves many users, but if we increase cell density we'd have smaller networks serving less users to improve capacity - but it'd also make it less feasible to connect the small cell using fibre.</p>
+
+<p>One solution is to use existing <strong>shared PON FTTH</strong> infrastructure to serve mobile cells. </p>
+
+<h2>
+<a id="user-content-ran" class="anchor" href="#ran" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RAN</h2>
+
+<p><a href="NGImages/figure15.png" target="_blank"><img src="NGImages/figure15.png" alt="New and Old RAN Structure" style="max-width:100%;"></a></p>
+
+<h3>
+<a id="user-content-coaxial-in-distributed-ran" class="anchor" href="#coaxial-in-distributed-ran" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Coaxial in Distributed RAN</h3>
+
+<p>Up until recently, base stations used to be distributed meaning each cell has a mast, antenna, <em>and</em> radio and digital processing units. The way this worked was the antenna at the top of the mast was connected to the baseband unit (BBU) at the bottom through a thick, 5cm coaxial cable. This resulted in bulkiness, increased wind resistance and added cost.</p>
+
+<h3>
+<a id="user-content-fibre-optics-in-distributed-ran" class="anchor" href="#fibre-optics-in-distributed-ran" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fibre optics in Distributed RAN</h3>
+
+<p>In order to reduce this issue, vendors have started replacing coax with fibre. This can carry the capacity of the coax.</p>
+
+<h2>
+<a id="user-content-cpri" class="anchor" href="#cpri" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CPRI</h2>
+
+<p>The connection between the BBU and the Remote Radio Unit (RRU) is through a protocol called Common Public Radio Interface. There is also another one called Open Base Station Architecture Initiative (OBSAI). The idea is that all digital processing is done at the BBU, and the RF signal is sampled, digitized and sent to the RRU over fibre.</p>
+
+<h2>
+<a id="user-content-bbu-hoteling" class="anchor" href="#bbu-hoteling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>BBU Hoteling</h2>
+
+<p>Well if we've got a fibre interface between the BBU and RRU now, why would we keep the BBU's separate? Why not stick em all in a building where its more secure and less prone to weather conditions, and I can use a place that's way more suitable that wherever the mast is at? Hell I can put loads of BBU's in the same location, each connected to it's mast by fibre. Actually yeah, lets do that.</p>
+
+<h2>
+<a id="user-content-bbu-pooling" class="anchor" href="#bbu-pooling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>BBU Pooling</h2>
+
+<p>So if we have multiple antenna masts connected to the same building, why not try some statistical multiplexing and use less BBUs? I mean not all cells are gonna be working at peak data rates all the time. This concept is called <strong>BBU Pooling</strong>, but it requires a new type of BBU capable of using multiple masts at once. This is implemented through Network Function Virtualization, which is when we can run software functions related to physical hardware away from the actual hardware. This results in the BBU becoming a software instance running on top of a server.</p>
+
+<h2>
+<a id="user-content-cloud-ran" class="anchor" href="#cloud-ran" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cloud-RAN</h2>
+
+<p>Once the BBU is software running on a server, you can evolve the concept to cloud computing; where you don't need to bother putting your servers in multiple areas... just use a data centre. This is the concept of Cloud-RAN.</p>
+
+<h3>
+<a id="user-content-fronthaul" class="anchor" href="#fronthaul" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fronthaul</h3>
+
+<p>The connection between the BBU and RRU in CPRI is called the fronthaul because the CPRI signal transmitted is part of the front end of the base station.</p>
+
+<p>The fronthaul interface samples the wireless signal and practically transmits a digitized version of the radio wave. To calculate the Data Rate Required:</p>
+
+<pre><code>R = Rs * Nq * Na * Nb * Rc * Ri
+</code></pre>
+
+<ul>
+<li>Rs -&gt; The sampling rate in MHz</li>
+<li>Nq -&gt; The number of bits used to digitise the samples, usually 15</li>
+<li>Na -&gt; The number of antennas used</li>
+<li>Nb -&gt; The number of 10MHz frequency bands used</li>
+<li>Rc -&gt; The overhead given by word control ratio</li>
+<li>Rl -&gt; Overhead given by the line coding</li>
+</ul>
+
+<h4>
+<a id="user-content-fronthaul-latency-issue" class="anchor" href="#fronthaul-latency-issue" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fronthaul Latency Issue</h4>
+
+<p>The Hybrid Automatic Repeat Request (HARQ) system requires that messages between the UE and the BBU are acknowledged within 3ms. However there are generally several processing units that take up time; so typically the fronthaul transmission over fibre is given a constraint of 200-400 microseconds.</p>
+
+<h4>
+<a id="user-content-fronthaul-over-fibre-solutions" class="anchor" href="#fronthaul-over-fibre-solutions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fronthaul Over Fibre Solutions</h4>
+
+<p>There's fronthaul over individual fibre which is:</p>
+
+<ul>
+<li>A simple ptp link</li>
+<li>Fibre length limited to 20-40km for latency issue</li>
+<li>Network cost is unsustainable for high density deployments</li>
+</ul>
+
+<p>There's also fronthaul over PON:</p>
+
+<ul>
+<li>Virtual ptp which works similar to actual ptp -&gt; Uses less fibre but has more expensive receivers</li>
+<li>TDM multiplexing between different base stations when the rate of each RRU is relatively low. It currently only works with fixed bandwidth allocation, since DBA would add time overhead.</li>
+</ul>
+
+<h4>
+<a id="user-content-fronthaul-capacity-issue" class="anchor" href="#fronthaul-capacity-issue" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fronthaul Capacity Issue</h4>
+
+<p>One way to reduce the capacity required in the optical channel is to perform signal compression. CPRI compression is carried out by reducing the number of quantisation bits. Achievable compression rations can be of 1:2 up to 1:3. Compression can be lossy or lossless -&gt; lossless is more difficult to implement so it's not really implemented.</p>
+
+<p>Another solution is split PHY processing or midhauling:</p>
+
+<ul>
+<li>Doing a bit more processing at the RRU can reduce the optical transmission rate considerably. In addition it restores the proportionality with the user traffic, thus reintroducing the possibility of carrying out statistical multiplexing.</li>
+</ul>
+
+<p>The Split-PHY solution is currently under investigation as it reduces the required bandwidth substantially. However it does not help with latency as HARQ is controlled by the MAC layer.</p>
+
+<p>Due to the lower capacity and the fact it allows for statistical multiplexing, it now makes it even more interesting to transmit it over PON (ptmp), though using fixed bandwidth allocation is now inefficient since we want to implement statistical multiplexing.</p>
+
+<h1>
+<a id="user-content-metro-core-networks" class="anchor" href="#metro-core-networks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metro Core Networks</h1>
+
+<p>The metropolitan (metro) network is usually called aggregation as it aggregates data from the access networks. The core network then transports the data across to the destination metro.
+Metro does not need to go through the core for data that remains local. Metro networks usually have a mesh topology, though it often has rings inherited from previous transmission systems.</p>
+
+<h2>
+<a id="user-content-transport-layers" class="anchor" href="#transport-layers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Transport Layers</h2>
+
+<p>Data transport and routing involves the first three layers of the OSI scale:</p>
+
+<ul>
+<li>L1 - Physical Layer: The optical connection linking two points</li>
+<li>L2 - Data Link: Electronic packet switching</li>
+<li>L3 - IP: Electronic packet routing, operating on a global internet scale</li>
+</ul>
+
+<h2>
+<a id="user-content-first-gen-optical-networks" class="anchor" href="#first-gen-optical-networks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>First Gen Optical Networks</h2>
+
+<p>The optical transmission network was terminated by Electronic Cross Connects, where the IP topology was built on top of the E-XC links.
+<a href="NGImages/figure16.png" target="_blank"><img src="NGImages/figure16.png" alt="First Gen Cross Connect" style="max-width:100%;"></a></p>
+
+<h3>
+<a id="user-content-ip-over-wdm-proposition" class="anchor" href="#ip-over-wdm-proposition" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>IP over WDM proposition</h3>
+
+<p>The idea is to remove the OXC and use the routers to terminate all traffic; so there is no need for L2 network as the IP transmits directly on top of WDM network. The problem was that all traffic is terminated, so every wavelength in the fibre needs a port in the router, and routers are expensive.</p>
+
+<h2>
+<a id="user-content-second-gen-optical-networks" class="anchor" href="#second-gen-optical-networks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Second Gen Optical Networks</h2>
+
+<p>Here optics become part of the network as it can switch paths dynamically. The optical cross connect is the optical element that provides switching. The entire optical switching element is often referred to as Reconfigurable Optical Add Drop Multiplexer (ROADM). ROADMs are also used to connect L2 networks.</p>
+
+<h2>
+<a id="user-content-optical-cross-connects" class="anchor" href="#optical-cross-connects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optical Cross Connects</h2>
+
+<p>An optical Cross Connect is a device that switches light without converting it into digital electronic signal. There are two ways of doing this:</p>
+
+<ul>
+<li>MicroElectroMechanical Systems (MEMs) to produce a fibre switch</li>
+<li>Wavelength Selective Switch (WSS): given an input fibre with multiple wavelengths, can select which wavelengths to send to different output fibres.</li>
+</ul>
+
+<h2>
+<a id="user-content-issues-with-optical-switching" class="anchor" href="#issues-with-optical-switching" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Issues with Optical Switching</h2>
+
+<p>Optical switching introduces new issues into the network, for example Since the optical layer is analogue, switching dynamically to new paths create issues:</p>
+
+<ul>
+<li>If the new path is longer or goes through more nodes it might lower the OSNR too much.</li>
+<li>Adding/removing wavelength channels create transients in the amplifier chains that generate errors in all other channels</li>
+<li>It is difficult to predict how the nonlinear effect will impact the system after switching.
+Another problem is that the optical layer becomes part of the dynamic topology: </li>
+<li>Now both optical and IP layer topology can change, but if they change independently they affect each other.</li>
+</ul>
+
+<p>The operator also now has more freedom to select how to change routes, this is called multi-layer optimisation. However, the added freedom increases the complexity of routing decisions, and optimising both layers together is a computationally hard problem due to the higher number of variables in the model.</p>
+
+<h2>
+<a id="user-content-network-planning" class="anchor" href="#network-planning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Network Planning</h2>
+
+<p>There are methods for simplifying the network model and looking for sub-optimal solutions. </p>
+
+<h1>
+<a id="user-content-quality-of-service" class="anchor" href="#quality-of-service" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quality of Service</h1>
+
+<p>The internet was born as a best effort service, where it does its best to transfer data between two points. Some Jargon is:</p>
+
+<ul>
+<li>
+<strong>Packet Loss</strong>: The fact a packet might not reach it's destination</li>
+<li>
+<strong>Latency</strong>: The time it takes for a packet to reach it's destination</li>
+<li>
+<strong>Jitter</strong>: The variation in the latency of received packets</li>
+<li>
+<strong>Capacity</strong>: How many bits can be received per second</li>
+</ul>
+
+<p>The internet is unreliable, though the transport layer with TCP creates a virtual reliable network on top of the unreliable network. However, TCP can't solve every problem that results from a bad network.</p>
+
+<h2>
+<a id="user-content-latency-and-jitter" class="anchor" href="#latency-and-jitter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Latency and Jitter</h2>
+
+<p>Latency is a problem typically for voice and video conferencing, which cannot be tackled at the transport layer but must be handled at the network layer.
+Jitter is a problem for some real time applications which expect a packet within a certain time from the previous one, like VoiP or Video. This can be solved at the application level using buffers though this introduces latency.</p>
+
+<h2>
+<a id="user-content-packet-loss-and-capacity" class="anchor" href="#packet-loss-and-capacity" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Packet Loss and Capacity</h2>
+
+<p>Packet loss in principle affects all applications, but TCP is capable of recovering lost packets. Unrecovered packet loss is catastrophic for file transfer, though it might not be too bad for voice or video where you only loose one piece.
+Capacity relates to all the previously mentioned metrics, as not enough capacity will result in any of the above. Real time applications need a certain capacity or else they wont work. Capacity is a layer 1 issue although in a network its bottlenecked by the slowest link in a network.</p>
+
+<h2>
+<a id="user-content-solutions" class="anchor" href="#solutions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solutions</h2>
+
+<p>Well one approach is to improve capacity so much there is little/no queuing at routers/switches -&gt; No congestion. But its also incredibly expensive to over provision in internet infrastructure, so that's probably not really a good solution.</p>
+
+<p>Another is statistical multiplexing of packets, which is an efficient way of sharing resources when data is bursty. The key idea behind statistical multiplexing is to prioritise packets, so while realtime apps need strict delivery schedules where as file transfers dont really.</p>
+
+<p>QoS is often referred to as QoS differentiation, where priority is given to applications that would suffer the most from increase in packet loss, latency and jitter. This works because packets generally have a field that indicates priority, and based on these fields we can give priority to packets with higher priority values when congestion occurs. The problem of course is who decides what the priority of an application is, and what stops people assigning their packets the highest priority?</p>
+
+<p>As a result, QoS is used but generally not for user applications. The priority bits could be decided by the entity purchasing the service (Business users).</p>
+
+<h2>
+<a id="user-content-qos-tools" class="anchor" href="#qos-tools" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>QoS Tools</h2>
+
+<p>These include:</p>
+
+<ul>
+<li>A classifier to assign packets to a class of service (COS)</li>
+<li>Metering and Coloring to check the rate packets are coming in against predefined thresholds and assigning them colors (priorities)</li>
+<li>Policer that discards packets that have exceeded their threshold</li>
+<li>Shaper that delays packets so that bandwidth threshold is not exceeded at any time</li>
+<li>Queue differentiation, where different classes are assigned to different FIFO queues</li>
+<li>Scheduler decides in which order to get packets from the different queues</li>
+<li>Rewrite: which can modify a packet class marking</li>
+</ul>
+
+<h3>
+<a id="user-content-classifier" class="anchor" href="#classifier" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Classifier</h3>
+
+<p>In an ideal scenario, the classifier would be able to trust the COS marking on the packet. In practice, if a packet has a COS then one of three things happens:</p>
+
+<ul>
+<li>Trust it and use it for its internal router operations</li>
+<li>Give it a more in depth class</li>
+<li>Change it completely</li>
+</ul>
+
+<h3>
+<a id="user-content-metering-and-coloring" class="anchor" href="#metering-and-coloring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Metering and Coloring</h3>
+
+<p>A customer could have a contract with an operator through a service level agreement (SLA). The contract would detail:</p>
+
+<ul>
+<li>A committed information rate that must be satisfied (maybe 5 Gb/s)</li>
+<li>A peak information rate that should be satisfied if the capacity is available</li>
+<li>Additional details on how its measured, any level of availability and protection and eventual penalties</li>
+</ul>
+
+<h3>
+<a id="user-content-policer" class="anchor" href="#policer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Policer</h3>
+
+<p>This performs actions on packets based on a data rate threshold limit. Any traffic above a certain rate is automatically dropped, typically performed at the ingress of a router. </p>
+
+<h4>
+<a id="user-content-an-implementation-token-bucket" class="anchor" href="#an-implementation-token-bucket" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>An implementation: Token Bucket</h4>
+
+<p>The idea is that tokens are added to the system periodically and each packet coming in has two options: </p>
+
+<ul>
+<li>If there are credits available it enters one of the queues</li>
+<li>If there aren't any credits it gets discarded (Credits are not consumed)</li>
+</ul>
+
+<p>The depth of the bucket determines the max number of credits that can be stored at any one time, which determines the burst size limit. The number of tokens per time determines instead the bandwidth limit value.</p>
+
+<h3>
+<a id="user-content-shaper" class="anchor" href="#shaper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shaper</h3>
+
+<p>A shaper also performs an action on packets based on a data rate threshold. However the action is not to drop but to delay so that the threshold is not exceeded.</p>
+
+<h4>
+<a id="user-content-shaper-implementation-leaky-bucket" class="anchor" href="#shaper-implementation-leaky-bucket" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shaper Implementation: Leaky bucket</h4>
+
+<p>The idea is to have a buffer where incoming packets are accepted at whatever rate they come in and the buffer is depleted at a constant rate. The rate at which packets are taken from the buffer determines the bandwidth limit. The size of the buffer determines for how long excess traffic can be sent before the buffer overflows and starts discarding traffic.</p>
+
+<h3>
+<a id="user-content-queuing" class="anchor" href="#queuing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Queuing</h3>
+
+<p>Queues are FIFO and packets go linearly from input to output. Packets can be dropped before entering a queue based on the queues fill level. Depending on the classification of packets they can be sent to a different queue. Typically a router port has up to 8 queues per port.</p>
+
+<p>Queue size affects packet loss, delay and jitter. A longer queue is able to absorb heavier traffic bursts, with lower chance of the queue filling up and traffic being dropped. However, packets spend longer in the queue which means a longer latency.</p>
+
+<h3>
+<a id="user-content-rewrite" class="anchor" href="#rewrite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Rewrite</h3>
+
+<p>This changes the COS marking of an incoming packet, mainly because the router might not trust the entity that has marked the packet. The rewriter can also be used to signal information to a downstream router, provided both routers have a similar interpretation of the COS marking.</p>
+
+<h3>
+<a id="user-content-scheduler" class="anchor" href="#scheduler" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Scheduler</h3>
+
+<p>This is associated with the use of differentiated queues as it implements an algorithm to decide how to serve the queues. Many options are possible:</p>
+
+<ul>
+<li>A simple way is to serve first all packets in the queue with the highest priority</li>
+<li>However more complex behaviours are also possible</li>
+</ul>
+
+<p>Below are some scheduler implementations:</p>
+
+<h4>
+<a id="user-content-fifo-and-fq" class="anchor" href="#fifo-and-fq" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FIFO and FQ</h4>
+
+<p>FIFO is a simple queue with no service differentiation, it preserves packet order and when its full it drops packets. Fair Queues isolates different flows into different logical queues, and the scheduler picks a packet from the logical queue in round robin. It does not provide QoS differentiation since its fair, and is not used in practice since separating flows is too computationally intensive.</p>
+
+<h4>
+<a id="user-content-pq-and-wfq" class="anchor" href="#pq-and-wfq" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PQ and WFQ</h4>
+
+<p>Priority queuing has multiple queues of different priority and packets are taken from the highest priority queue first and so on. The priority is strict, but this can result in low priority traffic becoming stalled.
+Weighted Fair Queuing rather than giving strict priority to queues it gives proportional weights. As a result, low priority queues dont have to wait for higher priorities to empty before they're served.</p>
+
+<h4>
+<a id="user-content-wrr-and-dwrr" class="anchor" href="#wrr-and-dwrr" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>WRR and DWRR</h4>
+
+<p>Weighted Round Robin is similar to WFQ as it assigns different weights to different queues but it considers packets rather than queues. This is less computationally intensive then Weighted Fair Queues.
+Deficit Weight Round Robin tries to bring back fairness regarding packet size to WRR without having to calculate the exact size. It uses tokens (called quantums) which are assigned to queues proportionally to the weight at every turn. When a packet transmits it consumes quantums, in an amount proportional to the packet size in bytes. If not enough quantums are available, the queue is skipped until the next round.</p>
+
+<h4>
+<a id="user-content-pb-dwrr" class="anchor" href="#pb-dwrr" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>PB-DWRR</h4>
+
+<p>Priority based deficit weighted round robin adds stricter priority for services that need very low delay and jitter. Some queues are served strictly before others while others follow DWRR. There is a problem with high priority queues monopolising the capacity. One solutions is to police the high priority queue to some value that packets to that queue are dropped if they exceed the limit.</p>
+
+<h3>
+<a id="user-content-other-tools" class="anchor" href="#other-tools" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Other Tools</h3>
+
+<p>Other strategies exist to discard packets before the queue, one such method is called Random Early Discard (RED). The idea is that:</p>
+
+<ul>
+<li>RED drops packets with a certain probability as the queue starts filling up</li>
+<li>The idea is to send TCP a "message" as TCP will react to a packet drop by lowering the transmission rate</li>
+<li>Better to give an advanced notice than suddenly drop loads of packets</li>
+</ul>
+
+<p>Weighted Random Early Discard (WRED) allows for different drop profiles for a different type of traffic, so for example, it gives lower priority traffic a higher drop rate.</p>
+
+<h1>
+<a id="user-content-internet-of-things" class="anchor" href="#internet-of-things" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Internet of Things</h1>
+
+<p>This topic is really a variation of:</p>
+
+<ul>
+<li>Internet Of Things (IOT)</li>
+<li>Industrial Internet of Things (IIOT)</li>
+<li>Machine to Machine (M2M)</li>
+<li>Machine-Type Communications (MTC)</li>
+</ul>
+
+<p>IOT is split into massive IOT and critical IOT. Massive IOT is usually related to low cost, low energy sensors in massive numbers. Critical IOT relates to ultra reliable, low latency and very high availability devices.</p>
+
+<h2>
+<a id="user-content-mtc-requirements" class="anchor" href="#mtc-requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MTC Requirements</h2>
+
+<p>The requirements of MTC vary greatly, with massive MTC at one end of the spectrum and critical MTC on the other end.</p>
+
+<h3>
+<a id="user-content-massive-mtc" class="anchor" href="#massive-mtc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Massive MTC</h3>
+
+<p>This use case incorporates things like tracking, and monitoring. Requirements include:</p>
+
+<ul>
+<li>Simple devices that use low-complexity transmission</li>
+<li>Devices that can run on battery power for years</li>
+<li>Long transmission ranges for devices in remote locations</li>
+<li>Scalable networks that can connect either a large or small number of M2M devices.</li>
+</ul>
+
+<p>Massive MTC devices are usually sensors or actuators. Sensors are extremely low cost and consume very little amounts of energy. Data generated by each sensor is generally very small, and low latency is not a critical requirement.
+Actuators are also low in cost, but will have varying energy footprints from very low to moderate consumption.</p>
+
+<h3>
+<a id="user-content-critical-mtc" class="anchor" href="#critical-mtc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Critical MTC</h3>
+
+<p>Critical MTC/IOT refers to applications such as traffic safety/control. In this type of communication, monitoring and control occur in real-time, so E2E latency requirements are very low. Such applications require very high reliability and availability in terms of wireless connectivity, as well as very low latency. On the other hand, low device cost and energy consumption is not as important. While the volume of data transmitted will not always be big, wide instantaneous bandwidths would be useful. 5G aims to support these new classes of users in industry.  The main features that differentiate 5G from 4G are the increased resilience of links and ultra low-latency.</p>
+
+<h3>
+<a id="user-content-low-power-wide-area-networks-lpwan" class="anchor" href="#low-power-wide-area-networks-lpwan" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Low Power Wide Area Networks (LPWAN)</h3>
+
+<p>This is a tech that supports:</p>
+
+<ul>
+<li>Small messages with specific duty cycles</li>
+<li>Low power end nodes</li>
+<li>Suited to accessing sensors in awkward spots</li>
+<li>A cost point that suits the end applications</li>
+<li>the creation of public networks that serve multiple uses and users</li>
+</ul>
+
+<p>The aim of LPWAN is to support a vast number of cheap devices that transmit bursty, small, infrequent messages. It has a similar topology to mobile networks, with the aim of better range and penetration through the use of low frequencies and more robust signals. Estimates range from 50,000 to 100,000 devices per square kilometre/cell in non line of sight (NLOS) urban areas. In LOS situations the aim it to achieve &gt;15km range, typically by using sub 1GHz bands.</p>
+
+<p>Maintaining cheap devices on a field for 10 years means that the bill of materials (BOM) for devices must be very low. This results in challenges in radio design, where protocols must be stripped back to the bare minimum. This impacts the amount of handshaking a device can do, which also impacts the QoS levels. The MAC is also a problem for base stations as they need to facilitate thousands of devices sending small messages. </p>
+
+<h2>
+<a id="user-content-lora" class="anchor" href="#lora" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LoRa</h2>
+
+<p>LoRa is an alliance specification that operates in the 868MHz frequency which gives favourable propagation characteristics to travel long distances by LOS or to penetrate NLOS situations. As it operates in unlicensed spectrum it means anyone can deploy a basestation to service their needs. This also has the impact of uncertain QoS in the band since its only controlled by lightweight duty-cycle and power rules originally designed for short range devices - unlike an LPWAN deployed in licensed spectrum.</p>
+
+<p>LoRa has a large link budget (range/penetration) by using spread spectrum-based PHY. LoRa things use a simple Pure ALOHA MAC for the uplink which makes their operation very simple from a power and computation point of view. However this is not a robust MAC which means QoS is difficult/costly in terms of handshaking. Bidirectional comms is initiated by the Thing, not the base station.</p>
+
+<p>LoRaWAN is a proprietary technology which requires separate non-LTE compatible support and expertise. LoRaWAN uses a centralised RAN approach which means the basestations do as little processing as possible, everything is done in data centres. This makes LoRaWAN very scalable and makes base stations relatively cheap.</p>
+
+<p>A quick LoRa overview:</p>
+
+<ul>
+<li>868MHz tech</li>
+<li>Spread spectrum based</li>
+<li>Bidirectional</li>
+<li>250bps to 50kbps</li>
+<li>Up to 154dB link budget</li>
+<li>Battery based end devices</li>
+</ul>
+
+<p>Below are the building blocks of a LPWAN, but bear in mind the technology is still in its infancy and will probably change:
+<a href="NGImages/figure17.png" target="_blank"><img src="NGImages/figure17.png" alt="LPWAN Building Blocks" style="max-width:100%;"></a></p>
+
+<p><a href="NGImages/figure18.png" target="_blank"><img src="NGImages/figure18.png" alt="Deployment Scenario" style="max-width:100%;"></a></p>
+
+<p>IOT devices have a <strong>Duty cycle</strong> which is the fraction of how long it is active for. The higher a devices duty cycle, the less time the battery will last for. The more times a device transmits in a day, the higher it's duty cycle. It's also worth noting the closer a device is to a base station, the longer it's battery lasts.</p>
 
 <h1>
 <a id="user-content-5g" class="anchor" href="#5g" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5G</h1>
