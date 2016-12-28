@@ -128,6 +128,12 @@ app.get('/notes/nextGenNotes', (req, res) => {
   res.sendFile(__dirname+'/nextGenNetworks.html');
 });
 
+app.get('/notes/graphics', (req, res) => {
+  // If no cookie has been sent with the request, generate a new one for tge user
+  res.set('content-type', 'text/html');
+  res.sendFile(__dirname+'/graphics.html');
+});
+
 app.get('/tracking-pixel', (request, result) => {
   // If no cookie has been sent with the request, generate a new one for tge user
   if(!request.cookies.cid){
