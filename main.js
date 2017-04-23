@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded())
 // Read in configuration file
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
 
-Nodemailer setup
+// Nodemailer setup
 const transporter = nodeMailer.createTransport({
   service: 'gmail',
   auth: {
@@ -169,6 +169,6 @@ app.get('/notes/graphics', (req, res) => {
 // });
 
 // app.listen(8080, () => {})
-// http.createServer(app).listen(8080, '10.131.24.117');
-http.createServer(app).listen(8080, '127.0.0.1');
+http.createServer(app).listen(8080, '10.131.24.117');
+// http.createServer(app).listen(8080, '127.0.0.1');
 // console.log("Server running at http://10.131.24.117/");
