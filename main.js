@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const url = require('url');
-const images = require('images');
+// const images = require('images');
 const cookieParser = require('cookie-parser');
 const randomString = require('randomstring');
 const mysql = require('mysql');
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded())
 // Read in configuration file
 const config = JSON.parse(fs.readFileSync('config.json', 'utf8'))
 
-// Nodemailer setup
+Nodemailer setup
 const transporter = nodeMailer.createTransport({
   service: 'gmail',
   auth: {
@@ -37,20 +37,20 @@ const transporter = nodeMailer.createTransport({
   }
 })
 
-// MySQL Connection
-const trackingConnection = mysql.createConnection({
-  host: 'localhost',
-  user: config.database.user,
-  password: config.database.pass,
-  database: 'tracking'
-});
-
-const formConnection = mysql.createConnection({
-  host: 'localhost',
-  user: config.database.user,
-  password: config.database.pass,
-  database: 'mohamey_forms'
-});
+// // MySQL Connection
+// const trackingConnection = mysql.createConnection({
+//   host: 'localhost',
+//   user: config.database.user,
+//   password: config.database.pass,
+//   database: 'tracking'
+// });
+//
+// const formConnection = mysql.createConnection({
+//   host: 'localhost',
+//   user: config.database.user,
+//   password: config.database.pass,
+//   database: 'mohamey_forms'
+// });
 
 // Connect to MySql Database
 // try{
@@ -134,40 +134,41 @@ app.get('/notes/graphics', (req, res) => {
   res.sendFile(__dirname+'/graphics.html');
 });
 
-app.get('/tracking-pixel', (request, result) => {
-  // If no cookie has been sent with the request, generate a new one for tge user
-  if(!request.cookies.cid){
-    result.cookie('cid', randomString.generate(30), {'path':'/'});
-  }
-
-  images(1,1)
-    .fill(255,255,255)
-    .save('p.jpg');
-  result.set('content-type','image/jpg');
-  result.sendFile(__dirname+'/p.jpg');
-
-  const usersSql = "INSERT INTO users (cookie, ip_address, user_agent) VALUES (?, ? ,?)";
-  const userValues = [request.cookies.cid, request.ip, request.headers['user-agent']];
-
-  const historySql = "INSERT INTO user_history (cookie, domain, history, page_title) VALUES (?, ? ,?, ?)";
-  const historyValues = [request.cookies.cid, request.hostname, request.query.url, request.query.title];
-  const userSqlQuery = mysql.format(usersSql, userValues);
-  const historySqlQuery = mysql.format(historySql, historyValues);
-
-  const userQuery = trackingConnection.query(userSqlQuery, (err, result) => {
-    if (err) {
-      console.log(err)
-    }
-  })
-
-  const historyQuery = trackingConnection.query(historySqlQuery, (err, request) => {
-    // console.log("Updated history database");
-    if (err){
-      console.log(err)
-    }
-  });
-});
+// app.get('/tracking-pixel', (request, result) => {
+//   // If no cookie has been sent with the request, generate a new one for tge user
+//   if(!request.cookies.cid){
+//     result.cookie('cid', randomString.generate(30), {'path':'/'});
+//   }
+//
+//   images(1,1)
+//     .fill(255,255,255)
+//     .save('p.jpg');
+//   result.set('content-type','image/jpg');
+//   result.sendFile(__dirname+'/p.jpg');
+//
+//   const usersSql = "INSERT INTO users (cookie, ip_address, user_agent) VALUES (?, ? ,?)";
+//   const userValues = [request.cookies.cid, request.ip, request.headers['user-agent']];
+//
+//   const historySql = "INSERT INTO user_history (cookie, domain, history, page_title) VALUES (?, ? ,?, ?)";
+//   const historyValues = [request.cookies.cid, request.hostname, request.query.url, request.query.title];
+//   const userSqlQuery = mysql.format(usersSql, userValues);
+//   const historySqlQuery = mysql.format(historySql, historyValues);
+//
+//   const userQuery = trackingConnection.query(userSqlQuery, (err, result) => {
+//     if (err) {
+//       console.log(err)
+//     }
+//   })
+//
+//   const historyQuery = trackingConnection.query(historySqlQuery, (err, request) => {
+//     // console.log("Updated history database");
+//     if (err){
+//       console.log(err)
+//     }
+//   });
+// });
 
 // app.listen(8080, () => {})
-http.createServer(app).listen(8080, '10.131.24.117');
+// http.createServer(app).listen(8080, '10.131.24.117');
+http.createServer(app).listen(8080, '127.0.0.1');
 // console.log("Server running at http://10.131.24.117/");
