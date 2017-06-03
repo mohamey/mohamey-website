@@ -1,0 +1,30 @@
+[
+    {
+        "date": "2017/06/01",
+        "score": "6",
+        "story-tile": "Hello There!",
+        "story-author": "Yasir M.",
+        "story-img": "images/profile.png"
+    },
+    {
+        "date": "2017/06/02",
+        "score": "8",
+        "story-tile": "Hello There!",
+        "story-author": "Yasir M.",
+        "story-img": "images/profile.png"
+    },
+    {
+        "date": "2017/06/03",
+        "score": "2",
+        "story-tile": "Hello There!",
+        "story-author": "Yasir M.",
+        "story-img": "images/profile.png"
+    },
+    {
+        "date": "2017/06/04",
+        "score": "7",
+        "story-tile": "Hello There!",
+        "story-author": "Yasir M.",
+        "story-img": "images/profile.png"
+    }
+]
