@@ -30,7 +30,12 @@ $(document).ready(function () {
                 lines: {
                     show: true
                 },
-                shadowSize: 0
+                shadowSize: 0,
+                curvedLines: {
+                    apply: true,
+                    active: true,
+                    monotonicFit: true
+                }
             },
             grid: {
                 color: '#646464',
@@ -58,7 +63,12 @@ $(document).ready(function () {
                     barWidth: .9,
                     align: 'center'
                 },
-                shadowSize: 0
+                shadowSize: 0,
+                curvedLines: {
+                    apply: true,
+                    active: true,
+                    monotonicFit: true
+                }
             },
             grid: {
                 color: '#646464',
