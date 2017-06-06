@@ -192,3 +192,11 @@
 .story-details-item {
   padding-left: 10px;
 }
+
+.heading {
+    text-align: center;
+}
+
+.main-body{
+    margin-top: 15px;
+}

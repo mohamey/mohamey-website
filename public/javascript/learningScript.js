@@ -6,7 +6,11 @@ $(document).ready(function () {
         console.log(allData)
         var graphData = [{
             data: [],
-            color: '#71c73e'
+            color: '#71c73e',
+            curvedLines: {
+                apply: true,
+                monotonicFit: true
+            }
         }]
         storyData.forEach(function (entry) {
             console.log(entry)
@@ -21,6 +25,13 @@ $(document).ready(function () {
         //     }
         // ];
         // Lines
+        var options = {
+            series: {
+                curvedLines: {
+                    active: true
+                }
+            }
+        }
         $.plot($('#graph-lines'), graphData, {
             series: {
                 points: {
